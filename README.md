@@ -1,4 +1,4 @@
-# Renewable Financial Power Purchasing Agreement (PPA) - Valuation using a Stochastic Pricing Engine
+# Financial Renewable Power Purchasing Agreement (PPA) - Valuation using a Stochastic Pricing Engine
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://renewable-ppa-pricing-engine.streamlit.app/)
 
@@ -6,9 +6,9 @@
 > This repository is an independent project entirely built outside of professional hours for educational purposes. It does not constitute financial or trading advice. All underlying data used in this model (including EEX futures curves and ECB yield curves) is either synthetic or publicly available. This codebase does not contain, reflect, or make use of any proprietary data, models, risk frameworks, or intellectual property from any current or former employer.
 
 ## 📌 Commercial Overview
-This interactive pricing engine is designed to model the exact mark-to-market (MtM) and Potential Future Exposure (PFE) profiles of a renewable financial Power Purchase Agreement (PPA) from the perspective of the originator. The user can choose from three distinct assets: Solar, Wind, and BESS.
+This interactive pricing engine is designed to model the exact mark-to-market (MtM) and Potential Future Exposure (PFE) profiles of a financial renewable Power Purchase Agreement (PPA) from the perspective of an originator operating in the **DK1 (Western Denmark)** [bidding zone(https://www.acer.europa.eu/electricity/market-rules/capacity-allocation-and-congestion-management/bidding-zone-review). The user can choose from three distinct assets: Solar, Wind, and BESS.
 
-In modern power markets, a significant risk to an originator is not baseline volatility, but extreme grid tail-risks (e.g., severe supply gluts or weather-driven price crashes) coupled with renewable cannibalization. This engine allows the user to dynamically test the fixed leg of a flex structure against those exact conditions via a live Streamlit dashboard.
+For operators in European grids, extreme grid tail-risks (e.g., severe supply gluts or weather-driven price crashes) and renewable cannibalization are important sources of risk. This engine allows the user to dynamically test the fixed leg of a flex structure that accommodates these dynamics via a live Streamlit dashboard.
 
 ## 📐 Quantitative Architecture
 The stochastic engine driving the simulations rests on a **Mean-Reverting, Mixed Jump-Diffusion Model**, thereby accounting for the price spikes characteristic of European power grids.
