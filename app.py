@@ -151,9 +151,9 @@ if "BESS" in asset_class:
 else:
     fixed_leg_input = st.sidebar.slider("PPA Strike Price (Fixed Leg, €/MWh)", min_value=40.0, max_value=120.0, value=82.0, step=1.0)
 
-st.sidebar.subheader("2. Tail-Risk Component (POT)")
-st.sidebar.markdown("Adjusting the threshold dynamically alters the baseline diffusion MLE calibration.")
-threshold_input = st.sidebar.slider("Jump Threshold (Standard Deviations)", min_value=1.5, max_value=6.0, value=3.0, step=0.25)
+st.sidebar.subheader("2. Jump-Diffusion Filter")
+st.sidebar.markdown("Isolating extreme market spikes via standard deviation thresholds refines the continuous diffusion volatility calibration.")
+threshold_input = st.sidebar.slider("Jump Identification Threshold", min_value=1.5, max_value=6.0, value=3.0, step=0.25)
 
 calibrator = StochasticCalibrator(df_agg)
 lambda_j, mu_j, sigma_j = calibrator.calibrate_jumps(threshold_std=threshold_input)
@@ -162,7 +162,7 @@ kappa_base, sigma_base = calibrator.calibrate_diffusion()
 st.sidebar.subheader("3. Diffusion Volatility")
 st.sidebar.markdown(f"MLE Calibrated Baseline: **{sigma_base:.2f}**")
 sigma_input = st.sidebar.slider(
-    "Diffusion Volatility (σ)", 
+    "Continuous Volatility (σ)", 
     min_value=float(sigma_base * 0.1), 
     max_value=float(sigma_base * 3.0), 
     value=float(sigma_base), 
@@ -170,11 +170,11 @@ sigma_input = st.sidebar.slider(
 )
 
 st.sidebar.info(
-    f"**Live MLE Output:**\n"
-    f"* Jump Frequency - Hazard Rate (λ): {lambda_j:.2f}/yr\n"
-    f"* Jump Mean (μ): €{mu_j:.2f}\n"
-    f"* Jump Standard Deviation (σ): €{sigma_j:.2f}\n"
-    f"* Mean-Reversion (κ): {kappa_base:.3f}"
+    f"**Live MLE Parameters:**\n"
+    f"* Jump Frequency (λ): {lambda_j:.2f}/yr\n"
+    f"* Jump Mean (μ_j): €{mu_j:.2f}\n"
+    f"* Jump Volatility (σ_j): €{sigma_j:.2f}\n"
+    f"* Mean-Reversion (κ): {kappa_base:.2f}"
 )
 
 # =====================================================================
